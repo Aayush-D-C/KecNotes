@@ -69,7 +69,7 @@
             border-radius: 50%;
             background: linear-gradient(45deg, var(--accent), var(--accent-secondary));
             opacity: 0.1;
-            animation: float 20s infinite linear;
+            animation: float 10s infinite linear;
             filter: blur(1px);
         }
 
@@ -759,6 +759,68 @@
             }
         }
 
+        /* GSPA Mouse Cursor Effect */
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.8;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(79, 140, 255, 0.4);
+            transition: transform 0.1s ease;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-follower.hover {
+            transform: scale(1.5);
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+        }
+
+        .cursor-follower.click {
+            transform: scale(0.8);
+            background: linear-gradient(135deg, var(--accent-tertiary), var(--accent));
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(79, 140, 255, 0.6);
+            transition: all 0.05s ease;
+        }
+
+        .cursor-dot.hover {
+            transform: scale(1.5);
+            background: var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.8);
+        }
+
+        .cursor-dot.click {
+            transform: scale(0.5);
+            background: var(--accent-tertiary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.9);
+        }
+
+        /* Hide cursor on interactive elements */
+        button:hover ~ .cursor-follower,
+        a:hover ~ .cursor-follower,
+        .year-sem-card:hover ~ .cursor-follower,
+        .feature-card:hover ~ .cursor-follower,
+        .chapter-item:hover ~ .cursor-follower {
+            opacity: 0.3;
+        }
+
         /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -770,6 +832,11 @@
             .floating-orb {
                 animation: none;
             }
+
+            .cursor-follower,
+            .cursor-dot {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -780,6 +847,10 @@
         <div class="floating-orb"></div>
         <div class="floating-orb"></div>
     </div>
+
+    <!-- GSPA Mouse Cursor Effect -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-dot"></div>
 
     <div class="app-shell">
         <!-- Premium Sidebar -->
@@ -1045,7 +1116,7 @@
                         },
                         chapters: [
                             {
-                                title: "Chapter 1: Measurement Systems",
+                                title: "Chapter 1: Introduction",
                                 content: {
                                     notes: {
                                         driveId: "1e_bDTr0MCzZlmq-pkzywLXpaZk4lbSlV",
@@ -1053,7 +1124,7 @@
                                     },
                                     videos: [
                                         {
-                                            title: "Introduction to Measurement",
+                                            title: "Introduction to Instrumentation",
                                             youtubeId: "w88665IGlrs",
                                             duration: "16:20"
                                         }
@@ -1061,7 +1132,7 @@
                                 }
                             },
                             {
-                                title: "Chapter 2: Transducers",
+                                title: "Chapter 2: Theory of Measurement",
                                 content: {
                                     notes: {
                                         driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
@@ -1077,11 +1148,11 @@
                                 }
                             },
                             {
-                                title: "Chapter 3: Signal Conditioning",
+                                title: "Chapter 3: Transducers",
                                 content: {
                                     notes: {
                                         driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
-                                        title: "Signal Conditioning Notes"
+                                        title: "Transducers Notes"
                                     },
                                     videos: [
                                         {
@@ -1093,7 +1164,7 @@
                                 }
                             },
                             {
-                                title: "Chapter 4: Digital Instruments",
+                                title: "Chapter 4: Interfacing of Instrumentation Systems",
                                 content: {
                                     notes: {
                                         driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
@@ -1106,6 +1177,415 @@
                                             duration: "21:30"
                                         }
                                     ]
+                                }
+                            },
+                            {
+                                title: "Chapter 5: Connectivity Technology in Instrumentation",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Digital Instruments Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "ADC and DAC",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "21:30"
+                                        }
+                                    ]
+                                }
+                            }
+                            ,
+                            {
+                                title: "Chapter 6: Circuit Design",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Digital Instruments Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "ADC and DAC",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "21:30"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 7: Software for Instrumentation application",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Digital Instruments Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "ADC and DAC",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "21:30"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 8: Electrical Equipment",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Digital Instruments Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "ADC and DAC",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "21:30"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 9: Latest Trends in Instrumentation",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Digital Instruments Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "ADC and DAC",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "21:30"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 10: Application of Modern Instrumentation System",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Digital Instruments Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "ADC and DAC",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "21:30"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        name: "Operating System",
+                        code: "CS 502",
+                        teachers: ["Dr. Ram Kumar", "Anita Sharma", "Prakash Singh"],
+                        credits: 4,
+                        status: "complete",
+                        syllabus: {
+                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                            title: "Operating System Syllabus"
+                        },
+                        chapters: [
+                            {
+                                title: "Chapter 1: Introduction to Operating Systems",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "OS Introduction Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "What is an Operating System?",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "18:30"
+                                        },
+                                        {
+                                            title: "Types of Operating Systems",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "22:15"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "OS Basics Assignment",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 2: Process Management",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Process Management Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "Process States and Lifecycle",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "25:40"
+                                        },
+                                        {
+                                            title: "Process Scheduling Algorithms",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "31:20"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "Process Scheduling Problems",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 3: Memory Management",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Memory Management Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "Memory Allocation Strategies",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "28:15"
+                                        },
+                                        {
+                                            title: "Virtual Memory and Paging",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "35:50"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "Memory Management Lab",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 4: File Systems",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "File Systems Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "File System Structure",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "26:30"
+                                        },
+                                        {
+                                            title: "Directory Implementation",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "24:45"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "File System Design Project",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 5: Device Management",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Device Management Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "I/O Systems and Device Drivers",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "29:20"
+                                        },
+                                        {
+                                            title: "Device Allocation and Scheduling",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "27:10"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "Device Driver Assignment",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 6: Security and Protection",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Security and Protection Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "Access Control Mechanisms",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "32:45"
+                                        },
+                                        {
+                                            title: "Authentication and Authorization",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "28:30"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "Security Implementation Lab",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 7: Distributed Operating Systems",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Distributed OS Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "Distributed System Architecture",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "34:20"
+                                        },
+                                        {
+                                            title: "Network Protocols and Communication",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "30:15"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "Distributed System Project",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                title: "Chapter 8: Real-time Operating Systems",
+                                content: {
+                                    notes: {
+                                        driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                                        title: "Real-time OS Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "Real-time Scheduling",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "33:40"
+                                        },
+                                        {
+                                            title: "Deadline Management",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "26:25"
+                                        }
+                                    ],
+                                    assignments: [
+                                        {
+                                            title: "Real-time System Design",
+                                            driveId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        name: "Data Communication",
+                        code: "CS 502",
+                        teachers: ["Gopal Karn"],
+                        credits: 4,
+                        status: "complete",
+                        syllabus: {
+                            driveId: "1Ujvd18cpXZ4LIhEvVddqMCcj3Zb0uwZc",
+                            title: "Operating System Syllabus",
+                        },
+                        microSyllabus: {
+                            driveId: "1_9fr0tk8DHHJSGCebsXZV5OS_Bnk4Ti3",
+                            title: "Micro Syllabus"
+                        },
+                        chapters: [
+                            {
+                                title: "Chapter 1: Introduction to Data Communication",
+                                content: {
+                                    notes: {
+                                        driveId: "1JFCBvCBmTdtaXLl6o69SgrUi6dvx2mMn",
+                                        title: "DC Introduction Notes"
+                                    },
+                                    videos: [
+                                        {
+                                            title: "What is an Data Communication?",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "18:30"
+                                        },
+                                        {
+                                            title: "Types of communication",
+                                            youtubeId: "dQw4w9WgXcQ",
+                                            duration: "22:15"
+                                        }
+                                    ],
+                                }
+                            },
+                            {
+                                title: "Chapter 2: Data communication fundamentals",
+                                content: {
+                                    notes: {
+                                        driveId: "1DjaU_Rh_Sivso192nnfEY1fR4M65fiYQ",
+                                        title: "DC fundamentals Notes"
+                                    }
+                                }
+                            },
+                            {
+                                title: "Chapter 3: Transmission media & Data compression",
+                                content: {
+                                    notes: {
+                                        driveId: "13zIIiqgZ9mt-_h5TSt6Kci9cJ-4zbcnL",
+                                        title: "transmission media"
+                                    }
+                                }
+                            },
+                            {
+                                title: "Chapter 4: Signal encoding techniques",
+                                content: {
+                                    notes: {
+                                        driveId: "1K8_5B0C-WyrimfBXUFOMET3EkwLzbXFu",
+                                        title: "signal encoding"
+                                    }
+                                }
+                            },
+                            {
+                                title: "Chapter 5: Multiplexing & Switching",
+                                content: {
+                                    notes: {
+                                        driveId: "1pK4aYANIrbv3mAwHbeWLlK9OXF24-fnk",
+                                        title: "multiplexing & switching"
+                                    }
+                                }
+                            },
+                            {
+                                title: "Chapter 6: Cellular Wireless Communication and latest trends",
+                                content: {
+                                    notes: {
+                                        driveId: "159Z1z6HmxUQGSU4_WnzOoz-BtIWk-p1c",
+                                        title: "cellular wireless"
+                                    }
                                 }
                             }
                         ]
@@ -1122,8 +1602,11 @@
                 "Engineering Mathematics I": "calculator",
                 "Engineering Mathematics II": "calculator-fill",
                 "Instrumentation": "speedometer2",
+                "Operating System": "cpu",
                 "Data Structures & Algorithms": "diagram-3-fill",
-                "Data Communication": "wifi"
+                "Data Communication": "wifi",
+                "Electromagnetics": "magnet",
+                "Numerical Methods": "calculator-fill"
             };
             return iconMap[subjectName] || "book";
         }
@@ -1148,37 +1631,258 @@
             return statusTexts[status] || "Unknown";
         }
 
-        // Google Drive PDF Embedding
+        // Google Drive PDF Embedding with Simplified Loading
         function embedGoogleDrivePDF(driveId, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
 
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://drive.google.com/file/d/${driveId}/preview`;
-            iframe.className = 'pdf-viewer';
-            iframe.allow = 'autoplay';
-            
-            // Loading state
-            container.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm);">
-                    <div class="loading-spinner"></div>
-                    <span style="margin-left: 1rem; color: var(--text-secondary);">Loading PDF...</span>
-                </div>
-            `;
-
-            iframe.onload = function() {
-                container.innerHTML = '';
-                container.appendChild(iframe);
-            };
-
-            iframe.onerror = function() {
+            // Validate Drive ID format
+            if (!driveId || typeof driveId !== 'string' || driveId.trim() === '') {
                 container.innerHTML = `
                     <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm); color: var(--text-secondary);">
                         <i class="bi bi-exclamation-triangle" style="font-size: 2rem; margin-right: 1rem;"></i>
-                        <span>Failed to load PDF. Please check the link.</span>
+                        <span>Invalid Drive ID provided</span>
                     </div>
                 `;
+                return;
+            }
+
+            // Check if it's the example Drive ID
+            if (driveId === "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms") {
+                container.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm); color: var(--text-secondary);">
+                        <i class="bi bi-info-circle" style="font-size: 2rem; margin-right: 1rem;"></i>
+                        <div style="text-align: center;">
+                            <div style="margin-bottom: 1rem;">Example Drive ID detected</div>
+                            <div style="font-size: 0.9rem; color: var(--text-muted);">Please replace with actual Google Drive file IDs</div>
+                            <div style="margin-top: 1rem;">
+                                <a href="https://drive.google.com" target="_blank" style="color: var(--accent); text-decoration: none;">
+                                    <i class="bi bi-google-drive"></i> Open Google Drive
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Quick loading state (reduced delay)
+            container.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm);">
+                    <div class="loading-spinner" style="margin-bottom: 1rem;"></div>
+                    <div style="color: var(--text-secondary); text-align: center;">
+                        <div style="margin-bottom: 0.5rem;">Loading PDF...</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Please wait</div>
+                    </div>
+                </div>
+            `;
+
+            // Short timeout (2 seconds) then show PDF ready option
+            setTimeout(() => {
+                container.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm);">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <i class="bi bi-file-earmark-pdf" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                            <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">PDF Ready to View</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">Click below to open in Google Drive</div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                            <button onclick="window.open('https://drive.google.com/file/d/${driveId}/view', '_blank')" 
+                                    style="background: var(--accent); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 600;">
+                                <i class="bi bi-eye"></i> View in Google Drive
+                            </button>
+                            <button onclick="window.open('https://drive.google.com/file/d/${driveId}/download', '_blank')" 
+                                    style="background: var(--accent-secondary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 600;">
+                                <i class="bi bi-download"></i> Download PDF
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }, 2000); // Reduced from 8 seconds to 2 seconds
+        }
+
+        // Helper function to show Drive errors
+        function showDriveError(container, message) {
+            container.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm); color: var(--text-secondary);">
+                    <i class="bi bi-exclamation-triangle" style="font-size: 2rem; margin-right: 1rem;"></i>
+                    <div style="text-align: center;">
+                        <div style="margin-bottom: 1rem;">${message}</div>
+                        <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            Common issues:<br>
+                            • File not found or deleted<br>
+                            • File permissions not set to "Anyone with link can view"<br>
+                            • Invalid Drive ID format
+                        </div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            <i class="bi bi-lightbulb"></i> Tip: Right-click on your Google Drive file → Share → Change to "Anyone with the link"
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button onclick="testDriveLink('${container.id}')" style="background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); cursor: pointer; font-size: 0.9rem;">
+                                <i class="bi bi-bug"></i> Test Drive Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to test Drive links
+        function testDriveLink(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            // Get the Drive ID from the container's data attribute or try to extract it
+            const driveId = prompt("Enter a Google Drive file ID to test:");
+            if (!driveId) return;
+
+            // Test the link
+            container.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm); color: var(--text-secondary);">
+                    <div style="text-align: center;">
+                        <div class="loading-spinner" style="margin: 0 auto 1rem;"></div>
+                        <div>Testing Drive ID: ${driveId}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+                            Opening in new tab to test...
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Open the link in a new tab to test
+            const testUrl = `https://drive.google.com/file/d/${driveId}/view`;
+            window.open(testUrl, '_blank');
+
+            // Try to embed it
+            setTimeout(() => {
+                embedGoogleDrivePDF(driveId, containerId);
+            }, 2000);
+        }
+
+        // Function to retry embedding
+        function tryEmbedAgain(driveId, containerId) {
+            console.log('🔄 Retrying embed for:', driveId);
+            embedGoogleDrivePDF(driveId, containerId);
+        }
+
+        // Debug function to log Drive issues
+        function debugDrivePreview(driveId, containerId) {
+            console.log('🔍 Debugging Drive Preview:', {
+                driveId: driveId,
+                containerId: containerId,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            });
+
+            // Test if the Drive ID format is valid
+            const driveIdPattern = /^[a-zA-Z0-9_-]{25,}$/;
+            const isValidFormat = driveIdPattern.test(driveId);
+            console.log('✅ Drive ID Format Valid:', isValidFormat);
+
+            // Test the preview URL
+            const previewUrl = `https://drive.google.com/file/d/${driveId}/preview`;
+            console.log('🔗 Preview URL:', previewUrl);
+
+            // Test the view URL
+            const viewUrl = `https://drive.google.com/file/d/${driveId}/view`;
+            console.log('👁️ View URL:', viewUrl);
+
+            return {
+                isValidFormat,
+                previewUrl,
+                viewUrl
             };
+        }
+
+        // Function to handle large files with better user experience
+        function handleLargeFile(driveId, containerId, estimatedSize = 'unknown') {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm);">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <i class="bi bi-file-earmark-pdf" style="font-size: 3rem; color: var(--accent-secondary); margin-bottom: 1rem;"></i>
+                        <div style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem;">Large File Detected</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                            Estimated size: ${estimatedSize}<br>
+                            Large files may take longer to load in preview
+                        </div>
+                    </div>
+                    <div style="display: grid; gap: 1rem; width: 100%; max-width: 400px;">
+                        <button onclick="window.open('https://drive.google.com/file/d/${driveId}/view', '_blank')" 
+                                style="background: var(--accent); color: white; border: none; padding: 0.75rem; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 600;">
+                            <i class="bi bi-eye"></i> View in Google Drive (Recommended)
+                        </button>
+                        <button onclick="window.open('https://drive.google.com/file/d/${driveId}/download', '_blank')" 
+                                style="background: var(--accent-secondary); color: white; border: none; padding: 0.75rem; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 600;">
+                            <i class="bi bi-download"></i> Download for Offline Viewing
+                        </button>
+                        <button onclick="tryEmbedLargeFile('${driveId}', '${containerId}')" 
+                                style="background: var(--glass-bg); color: var(--text-primary); border: 1px solid var(--glass-border); padding: 0.75rem; border-radius: var(--border-radius-sm); cursor: pointer;">
+                            <i class="bi bi-hourglass-split"></i> Try Preview Anyway
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to try embedding large files with extended timeout
+        function tryEmbedLargeFile(driveId, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; background: var(--glass-bg-light); border-radius: var(--border-radius-sm);">
+                    <div class="loading-spinner" style="margin-bottom: 1rem;"></div>
+                    <div style="color: var(--text-secondary); text-align: center;">
+                        <div style="margin-bottom: 0.5rem;">Loading Large File...</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">This may take several minutes</div>
+                        <div style="margin-top: 1rem;">
+                            <button onclick="cancelLargeFileLoad('${containerId}')" 
+                                    style="background: var(--glass-bg); color: var(--text-primary); border: 1px solid var(--glass-border); padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); cursor: pointer; font-size: 0.8rem;">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Extended timeout for large files (5 minutes)
+            const largeFileTimeout = setTimeout(() => {
+                if (container.querySelector('.loading-spinner')) {
+                    handleLargeFile(driveId, containerId, 'Very Large (>10MB)');
+                }
+            }, 300000);
+
+            // Try to embed with extended timeout
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://drive.google.com/file/d/${driveId.trim()}/preview`;
+            iframe.className = 'pdf-viewer';
+            iframe.allow = 'autoplay';
+            iframe.style.border = 'none';
+            
+            iframe.onload = function() {
+                clearTimeout(largeFileTimeout);
+                setTimeout(() => {
+                    container.innerHTML = '';
+                    container.appendChild(iframe);
+                }, 2000);
+            };
+
+            iframe.onerror = function() {
+                clearTimeout(largeFileTimeout);
+                handleLargeFile(driveId, containerId, 'Error Loading');
+            };
+        }
+
+        // Function to cancel large file loading
+        function cancelLargeFileLoad(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            handleLargeFile(container.dataset.driveId || 'unknown', containerId, 'Loading Cancelled');
         }
 
         // YouTube Video Embedding
@@ -1287,6 +1991,13 @@
                             </p>
                         </div>
                     </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Micro Syllabus</h4>
+                        <div id="micro-syllabus-pdf-container"></div>
+                    
+                        <div style="margin-top: 2rem;">
+                    </div>
+                    
 
                     <div class="resource-grid" style="margin-top: 2rem;">
                         <div class="resource-card">
@@ -1321,6 +2032,9 @@
             // Load syllabus PDF
             if (subject.syllabus && subject.syllabus.driveId) {
                 embedGoogleDrivePDF(subject.syllabus.driveId, 'syllabus-pdf-container');
+            }
+            if (subject.microSyllabus && subject.microSyllabus.driveId) {
+                embedGoogleDrivePDF(subject.microSyllabus.driveId, 'micro-syllabus-pdf-container');
             }
         }
 
@@ -1709,8 +2423,77 @@
             };
         }
 
+        // GSPA Mouse Cursor Effect
+        function initCursorEffect() {
+            const cursorFollower = document.querySelector('.cursor-follower');
+            const cursorDot = document.querySelector('.cursor-dot');
+            
+            if (!cursorFollower || !cursorDot) return;
+
+            let mouseX = 0;
+            let mouseY = 0;
+            let followerX = 0;
+            let followerY = 0;
+            let dotX = 0;
+            let dotY = 0;
+
+            // Mouse move event
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // Mouse enter/leave events for interactive elements
+            const interactiveElements = document.querySelectorAll('button, a, .year-sem-card, .feature-card, .chapter-item, .resource-card, .nav-link');
+            
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursorFollower.classList.add('hover');
+                    cursorDot.classList.add('hover');
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursorFollower.classList.remove('hover');
+                    cursorDot.classList.remove('hover');
+                });
+            });
+
+            // Click events
+            document.addEventListener('mousedown', () => {
+                cursorFollower.classList.add('click');
+                cursorDot.classList.add('click');
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursorFollower.classList.remove('click');
+                cursorDot.classList.remove('click');
+            });
+
+            // Animation loop
+            function animateCursor() {
+                // Smooth following for the larger circle
+                followerX += (mouseX - followerX) * 0.1;
+                followerY += (mouseY - followerY) * 0.1;
+                
+                // Faster following for the dot
+                dotX += (mouseX - dotX) * 0.3;
+                dotY += (mouseY - dotY) * 0.3;
+
+                // Apply transforms
+                cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+                cursorDot.style.transform = `translate(${dotX - 4}px, ${dotY - 4}px)`;
+
+                requestAnimationFrame(animateCursor);
+            }
+
+            animateCursor();
+        }
+
         // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeApp();
+            initCursorEffect();
+        });
 
         // Handle window resize
         window.addEventListener('resize', debounce(() => {
